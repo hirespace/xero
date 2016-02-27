@@ -36,6 +36,7 @@ Xero.prototype.call = function(method, path, body, callback) {
 
             console.log('rootPlural ' + rootPlural);
             console.log('rootSingular ' + rootSingular);
+            console.log('JSON.stringify(rootSingular) ' + JSON.stringify(rootSingular));
 
             if (Array.isArray(body)) {
                 json_body[rootPlural] = [];
