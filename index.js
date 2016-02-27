@@ -33,6 +33,10 @@ Xero.prototype.call = function(method, path, body, callback) {
         } else {
             rootPlural = path.match(/([^\/\?]+)/)[1];
             rootSingular = inflect.singularize(root);
+
+            console.log('rootPlural ' + rootPlural);
+            console.log('rootSingular ' + rootSingular);
+
             if (Array.isArray(body)) {
                 json_body[rootPlural] = [];
                 for (var i = 0; i < body.length; i++) {
