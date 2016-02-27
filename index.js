@@ -34,10 +34,6 @@ Xero.prototype.call = function(method, path, body, callback) {
             rootPlural = path.match(/([^\/\?]+)/)[1];
             rootSingular = inflect.singularize(rootPlural);
 
-            console.log('rootPlural ' + rootPlural);
-            console.log('rootSingular ' + rootSingular);
-            console.log('JSON.stringify(rootSingular) ' + JSON.stringify(rootSingular));
-
             if (Array.isArray(body)) {
                 json_body[rootPlural] = [];
                 for (var i = 0; i < body.length; i++) {
@@ -51,12 +47,7 @@ Xero.prototype.call = function(method, path, body, callback) {
                 json_body[rootSingular] = body;
             }
 
-            console.log('json_body ' + JSON.stringify(json_body));
-
             post_body = JSONToXml(json_body, {xmlHeader: true});
-
-            console.log('post_body ' + post_body);
-
             content_type = 'application/xml';
         }
     }
