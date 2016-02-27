@@ -1,6 +1,5 @@
 var crypto  = require("crypto");
 var oauth   = require("oauth");
-var EasyXml = require('easyxml');
 var JSONToXml = require('jsontoxml');
 var xml2js = require('xml2js');
 var inflect = require('inflect');
