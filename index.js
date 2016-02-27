@@ -45,7 +45,13 @@ Xero.prototype.call = function(method, path, body, callback) {
             else {
                 json_body[rootSingular] = body;
             }
+
+            console.log('json_body ' + JSON.stringify(json_body));
+
             post_body = JSONToXml(json_body, {xmlHeader: true});
+
+            console.log('post_body ' + post_body);
+
             content_type = 'application/xml';
         }
     }
