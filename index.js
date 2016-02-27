@@ -32,7 +32,7 @@ Xero.prototype.call = function(method, path, body, callback) {
             post_body = body;
         } else {
             rootPlural = path.match(/([^\/\?]+)/)[1];
-            rootSingular = inflect.singularize(root);
+            rootSingular = inflect.singularize(rootPlural);
 
             console.log('rootPlural ' + rootPlural);
             console.log('rootSingular ' + rootSingular);
