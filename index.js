@@ -1,6 +1,7 @@
 var crypto  = require("crypto");
 var oauth   = require("oauth");
 var EasyXml = require('easyxml');
+var JSONToXml = require('jsontoxml');
 var xml2js = require('xml2js');
 var inflect = require('inflect');
 
@@ -22,14 +23,30 @@ function Xero(key, secret, rsa_key, showXmlAttributes, customHeaders) {
 Xero.prototype.call = function(method, path, body, callback) {
     var self = this;
 
-    var post_body = null;
-    var content_type = null;
+    var post_body = null,
+        json_body = {},
+        content_type = null,
+        rootPlural = null,
+        rootSingular = null;
     if (method && method !== 'GET' && body) {
         if (Buffer.isBuffer(body)) {
             post_body = body;
         } else {
-            var root = path.match(/([^\/\?]+)/)[1];
-            post_body = new EasyXml({rootElement: inflect.singularize(root), rootArray: root, manifest: true, singularize: false}).render(body);
+            rootPlural = path.match(/([^\/\?]+)/)[1];
+            rootSingular = inflect.singularize(root);
+            if (body.isArray()) {
+                json_body[rootPlural] = [];
+                for (var i = 0; i < body.length; i++) {
+                    json_body[rootPlural].push({
+                       name:  rootSingular,
+                       children: body[i]
+                    });
+                }
+            }
+            else {
+                json_body[rootSingular] = body;
+            }
+            post_body = JSONToXml(json_body, {xmlHeader: true});
             content_type = 'application/xml';
         }
     }
