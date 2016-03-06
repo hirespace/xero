@@ -21,7 +21,15 @@ function Xero(key, secret, rsa_key, showXmlAttributes, customHeaders) {
 
 Xero.prototype.call = function(method, path, body, callback) {
     var self = this;
-
+    
+    console.log("method " + method);
+    console.log("path " + path);
+    console.log("body " + body);
+    console.log("callback " + callback);
+    console.log("self " + JSON.stringify(self));
+    
+    
+    
     var post_body = null,
         json_body = {},
         content_type = null,
