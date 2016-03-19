@@ -19,14 +19,14 @@ function Xero(key, secret, rsa_key, showXmlAttributes, customHeaders) {
     }
 }
 
-Xero.prototype.call = function(method, path, body, callback, customHeaders) {
+Xero.prototype.call = function(method, path, body, customHeaders, callback) {
     var self = this;
     
     console.log("method " + method);
     console.log("path " + path);
     console.log("body " + body);
-    console.log("callback " + callback);
     console.log("customHeaders" + JSON.stringify(customHeaders));
+    console.log("callback " + callback);
     
     var post_body = null,
         json_body = {},
