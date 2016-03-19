@@ -26,9 +26,7 @@ Xero.prototype.call = function(method, path, body, callback, customHeaders) {
     console.log("path " + path);
     console.log("body " + body);
     console.log("callback " + callback);
-    console.log("self " + JSON.stringify(self));
-    
-    
+    console.log("customHeaders" + JSON.stringify(customeHeaders));
     
     var post_body = null,
         json_body = {},
@@ -76,6 +74,7 @@ Xero.prototype.call = function(method, path, body, callback, customHeaders) {
     for( var header in customHeaders ) {
         self.oa._headers[header]= customHeaders[header];
     }
+    console.log('self.oa._headers' + JSON.stringify(self.oa._headers));
     return self.oa._performSecureRequest(self.key, self.secret, method, XERO_API_URL + path, null, post_body, content_type, callback ? process : null);
 }
 
