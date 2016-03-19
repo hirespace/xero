@@ -10,8 +10,10 @@
 ```javascript
 var Xero = require('xero');
 
-var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY);
-xero.call('GET', '/Users', null, function(err, json) {
+var xero = new Xero(CONSUMER_KEY, CONSUMER_SECRET, RSA_PRIVATE_KEY),
+  customeHeaders = {'If-Modified-Since': 'Tue, 01 Mar 2016 00:00:00 GMT'};
+  
+xero.call('GET', '/Users', null, customeHeaders, function(err, json) {
         if (err) {
             log.error(err);
             return res.json(400, {error: 'Unable to contact Xero'});
