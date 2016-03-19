@@ -26,7 +26,7 @@ Xero.prototype.call = function(method, path, body, callback, customHeaders) {
     console.log("path " + path);
     console.log("body " + body);
     console.log("callback " + callback);
-    console.log("customHeaders" + JSON.stringify(customeHeaders));
+    console.log("customHeaders" + JSON.stringify(customHeaders));
     
     var post_body = null,
         json_body = {},
